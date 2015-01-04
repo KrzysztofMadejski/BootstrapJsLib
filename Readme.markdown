@@ -5,14 +5,9 @@ It has been stripped to provide just the functionality of loading external libra
 
 ## Make it go!
 
-As Visual Event is a bookmarklet, installing and running it on any web-page is extremely simple:
+Try the demo on http://krzysztofmadejski.github.io/InjectJsLib
 
-* Open the [Visual Event bookmarklet page](http://sprymedia.co.uk/VisualEvent) and drag the "Visual Event" link to your bookmark bar
-* Load a web-page which uses one of the supported Javascript libraries
-* Click "Visual Event" in your bookmark bar
-* View the event handlers which are attached to the document elements.
-
-A demo of Visual Event that is automatically loaded is [available](http://sprymedia.co.uk/VisualEvent/demo). This demo uses [DataTables](http://datatables.net) to create a test page with a number of events attached to different elements.
+Modify it according to your needs
 
 ## How to get involved
 

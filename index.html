@@ -29,6 +29,10 @@
 				background-color: rgb(236, 236, 236);
 				padding: 4px;
 			}
+			textarea {
+				width: 100%;
+				height: 100px
+			}
 		</style>
 		
 		<script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -63,7 +67,10 @@
 				 replace('{IJsSrc}', document.getElementById('f_ijssrc').value);
 				// s = s.replace(' ', '%20');
 
-				document.getElementById('bookmarklet').href = "javascript:"+s;
+				b = document.getElementById('bookmarklet');
+				b.href = "javascript:"+s;
+				b.innerText = document.getElementById('f_desc').value;
+				document.getElementById('textarea').value = b.outerHTML;
 			}
 		</script>
 	</head>
@@ -72,24 +79,33 @@
 			<h1>InjectJsLib bookmarklet generator</h1>
 			<p>
 				It will create bookmarklet that when clicked will load and initialize external library
-				on a webpage that brower user is viewing currently.
+				on a webpage that user is currently viewing.
 			</p>
 			<p>
 				<table>
 			<tr><td>Object name: </td><td><input type="text" id="f_obj" value="BootstrapVisualEvent"><br/></td></tr>
 			<tr><td>Short description: </td><td><input type="text" id="f_desc" value="BootstrapVisualEvent example"><br/></td></tr>
-			<tr><td>Lib src: </td><td><input type="text" id="f_src" value="examples/BootstrapVisualEvent.js"><br/></td></tr>
-			<tr><td>Loader src: </td><td><input type="text" id="f_ijssrc" value="InjectJsLib.js"></td></tr>
+			<tr><td>Lib src: </td><td><input type="text" id="f_src" value="http://krzysztofmadejski.github.io/InjectJsLib/examples/BootstrapVisualEvent.js"><br/></td></tr>
+			<tr><td>Loader src: </td><td><input type="text" id="f_ijssrc" value="http://krzysztofmadejski.github.io/InjectJsLib/InjectJsLib.js"></td></tr>
 				</table>
 			</p>
 			<p>
 				To generate a bookmarklet, modify the fields above, the
-				bookmarklet link will be updated as you type. When finished click or drag the
-				<i>InjectJsLib bookmarklet</i> link to your bookmarklet bar.
+				bookmarklet link will be updated as you type.
+				</p>
+			<p>
+				When finished click on bookmarklet to test the solution.
+				</p><p>
+				When you are happy with the effect drag the
+				<i>InjectJsLib bookmarklet</i> link to your bookmarklet bar or copy-paste bookmarklet html code to your site.
 			</p>
 			
 			<p style="text-align:center">
 				<a id="bookmarklet" href="">InjectJsLib bookmarklet</a>
+			</p>
+			<p>
+				Raw bookmarklet html code:
+				<textarea id="textarea" disabled="disabled"></textarea>
 			</p>
 		</div>
 	</body>
