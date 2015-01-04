@@ -16,7 +16,7 @@
 
 (function(window, document){
 
-	var script = document.getElementById('InjectJsLib');
+	var script = document.getElementById('InjectJsLib-Script');
 	var LibObj = script.dataset.ijslib_obj;
 	var LibDesc = script.dataset.ijslib_desc;
 	var LibSrc = script.dataset.ijslib_src;
