@@ -1,12 +1,14 @@
 /**
- * @summary     VisualEvent_Loader
- * @description Loader for VisualEvent - injects the required CSS and Javascript into a page
- * @file        VisualEvent_Loader.js
+ * @summary     InjectJsLib
+ * @description Load external library (js&css) on page using bookmarklet. Based on VisualEvent2
+ * @file        InjectJsLib.js
+ * @author      Krzysiek Madejski (https://github.com/KrzysztofMadejski)
  * @author      Allan Jardine (www.sprymedia.co.uk)
  * @license     GPL v2
  * @contact     www.sprymedia.co.uk/contact
  *
  * @copyright Copyright 2007-2013 Allan Jardine.
+ * @copyright Copyright 2014 Krzysiek Madejski.
  *
  * This source file is free software, under the GPL v2 license:
  *   http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,26 +21,26 @@
 	var LibDesc = script.dataset.ijslib_desc;
 	var LibSrc = script.dataset.ijslib_src;
 
-/*global VisualEvent,VisualEvent_Loader*/
+/*global InjectJsLib*/
 
-if ( typeof VisualEvent_Loader == 'undefined' ) {
+if ( typeof InjectJsLib == 'undefined' ) {
 
 /**
- * VisualEvent_Loader is a class which will provide pre-loading of Javascript and CSS files
- * for VisualEvent based on the environment the script is running in (for example if jQuery is
- * already available or not).
+ * InjectJsLib is a class which will provide pre-loading of Javascript and CSS files
+ * for external library.
  *
- *  @class VisualEvent_Loader
+ *  @class InjectJsLib
  *  @constructor
  *
  *  @example
- *     new VisualEvent_Loader();
+ *     new InjectJsLib();
 */
-window.VisualEvent_Loader = function ()
+window.InjectJsLib = function ()
 {
 	/* Sanity check */
-	if ( ! this instanceof VisualEvent_Loader ) {
-		alert( "VisualEvent loader warning: Must be initialised with the 'new' keyword." );
+	if ( ! this instanceof InjectJsLib ) {
+		// TODO check doesn't work. when it will work it should be simply return new InjectJsLib();
+		alert( "InjectJsLib loader warning: Must be initialised with the 'new' keyword." );
 		return;
 	}
 
@@ -62,7 +64,7 @@ window.VisualEvent_Loader = function ()
 	 */
 	this.dom = {
 		/**
-		 * Visual Label to show the end user that Visual Event is being loaded
+		 * Visual Label to show the end user that library is being loaded
 		 *  @type element
 		 *  @default  div
 		 */
@@ -80,7 +82,7 @@ window.VisualEvent_Loader = function ()
      *  @returns {undefined}
      *  @private
      */
-window.VisualEvent_Loader.loadFile = function ( file, type )
+window.InjectJsLib.loadFile = function ( file, type )
     {
         var n, img;
 
@@ -105,7 +107,7 @@ window.VisualEvent_Loader.loadFile = function ( file, type )
         }
     };
 
-VisualEvent_Loader.prototype = {
+InjectJsLib.prototype = {
 	/**
 	 * Constrctor - show a loading element to the end user and then load up the various files
 	 * that are needed
@@ -123,7 +125,7 @@ VisualEvent_Loader.prototype = {
 			return 0;
 		}
 
-		/* Show a label to the user to let them know that Visual Event is currently loading */
+		/* Show a label to the user to let them know that library is currently loading */
 		loading = this.dom.loading;
 		loading.setAttribute( 'id', 'InjectJsLib-Loading' );
 		loading.appendChild( document.createTextNode( 'Loading ' + LibDesc + '...' ) );
@@ -152,12 +154,12 @@ VisualEvent_Loader.prototype = {
 		}
 
 		// load referenced library
-        VisualEvent_Loader.loadFile(LibSrc, 'js');
+        InjectJsLib.loadFile(LibSrc, 'js');
 	},
 
 	/**
 	 * Check if dependent library is initialized.
-	 * It has to implement _isInitialized
+	 * It has to implement isLoaded
 	 *  @private
 	 */
 	"_pollReady": function ()
@@ -179,9 +181,9 @@ VisualEvent_Loader.prototype = {
 		}
 	}
 };
-} /* /typeof VisualEvent_Loader */
+} /* /typeof InjectJsLib */
 
     // Perform loading
-var tmp = new VisualEvent_Loader();
+var tmp = new InjectJsLib();
 
 })(window, document);

@@ -1,6 +1,6 @@
 // Step 1. load necessary js and css
-VisualEvent_Loader.loadFile("http://example.com/somefile.css", "css");
-VisualEvent_Loader.loadFile("http://example.com/somefile.js", "js");
+InjectJsLib.loadFile("http://example.com/somefile.css", "css");
+InjectJsLib.loadFile("http://example.com/somefile.js", "js");
 
 // Step 2. Create lib definition, be sure to implement isLoaded and toggle methods
 window.<LibObj> = {
