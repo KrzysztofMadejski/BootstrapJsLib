@@ -57,7 +57,7 @@
 					n.setAttribute('data-ijslib_obj', LibObj);\
 					n.setAttribute('data-ijslib_desc', LibDesc);\
 					n.setAttribute('data-ijslib_src', LibSrc);\
-					n.setAttribute('src',url+'?rand='+new Date().getTime());\
+					n.setAttribute('src',url);\
 					document.body.appendChild(n);\
 				}})();";
 
@@ -83,10 +83,10 @@
 			</p>
 			<p>
 				<table>
-			<tr><td>Object name: </td><td><input type="text" id="f_obj" value="BootstrapVisualEvent"><br/></td></tr>
-			<tr><td>Short description: </td><td><input type="text" id="f_desc" value="BootstrapVisualEvent example"><br/></td></tr>
+			<tr><td>Bookmarklet label: </td><td><input type="text" id="f_desc" value="BootstrapVisualEvent example"><br/></td></tr>
+			<tr><td>Lib object name: </td><td><input type="text" id="f_obj" value="BootstrapVisualEvent"><br/></td></tr>
 			<tr><td>Lib src: </td><td><input type="text" id="f_src" value="http://krzysztofmadejski.github.io/InjectJsLib/examples/BootstrapVisualEvent.js"><br/></td></tr>
-			<tr><td>Loader src: </td><td><input type="text" id="f_ijssrc" value="http://krzysztofmadejski.github.io/InjectJsLib/InjectJsLib.js"></td></tr>
+			<tr><td>Loader src (default is ok): </td><td><input type="text" id="f_ijssrc" value="http://krzysztofmadejski.github.io/InjectJsLib/InjectJsLib.js"></td></tr>
 				</table>
 			</p>
 			<p>

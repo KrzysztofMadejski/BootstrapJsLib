@@ -143,6 +143,7 @@ InjectJsLib.prototype = {
 		document.body.insertBefore( loading, document.body.childNodes[0] );
 
 		/* Start the polling for ready */
+		this.begin_loading_timestamp = new Date().getTime();
 		if ( typeof window[LibObj] == 'object' ) {
 			this._pollReady();
 			return; // Don't need to load any files if lib already loaded
@@ -166,7 +167,14 @@ InjectJsLib.prototype = {
 	{
 		var that = this;
 
-		if (window[LibObj].isLoaded()) {
+		if ((typeof window[LibObj] == 'object') && (typeof window[LibObj]['isLoaded'] != 'function')) {
+			window.alert("Object " + LibObj + " doesn't have isLoaded function implemented.");
+
+			document.body.removeChild( this.dom.loading );
+			return;
+		}
+
+		if ((typeof window[LibObj] == 'object') && window[LibObj].isLoaded()) {
 			// Loading is complete, initialise Library
 			this.s.loadingComplete = true;
 
@@ -175,9 +183,17 @@ InjectJsLib.prototype = {
 			/* Tidy up our display */
 			document.body.removeChild( this.dom.loading );
 		} else {
-			setTimeout( function() {
-				that._pollReady();
-			}, 100 );
+			// alert for errors
+			if (new Date().getTime() - this.begin_loading_timestamp > 1000 * 6) {
+				alert(LibObj + " object is not defined in the referenced script or script was not loaded. Check developer console.");
+
+				document.body.removeChild( this.dom.loading );
+				return;
+			} else {
+				setTimeout(function () {
+					that._pollReady();
+				}, 100);
+			}
 		}
 	}
 };
